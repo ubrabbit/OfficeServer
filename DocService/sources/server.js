@@ -101,7 +101,7 @@ const updateLicense = () => {
 	});
 };
 
-operationContext.global.logger.warn('Express server starting...');
+operationContext.global.logger.warn('Office server starting...');
 
 if (!(cfgTokenEnableBrowser && cfgTokenEnableRequestInbox && cfgTokenEnableRequestOutbox)) {
 	operationContext.global.logger.warn('Set services.CoAuthoring.token.enable.browser, services.CoAuthoring.token.enable.request.inbox, ' +
