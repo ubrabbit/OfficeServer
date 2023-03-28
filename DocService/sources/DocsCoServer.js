@@ -2821,7 +2821,7 @@ exports.install = function(server, callbackFunction) {
   // Для Excel необходимо делать пересчет lock-ов при добавлении/удалении строк/столбцов
   function* saveChanges(ctx, conn, data) {
     const docId = conn.docId, userId = conn.user.id;
-    ctx.logger.info("Start saveChanges: reSave: %s", data.reSave);
+    ctx.logger.info("Start saveChanges: reSave: %s data: %j", data.reSave, data);
 
     let lockRes = yield editorData.lockSave(ctx, docId, userId, cfgExpSaveLock);
     if (!lockRes) {

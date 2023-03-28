@@ -63,6 +63,8 @@ EditorData.prototype._getDocumentData = function(ctx, docId) {
 };
 EditorData.prototype._checkAndLock = function(ctx, name, docId, fencingToken, ttl) {
   let data = this._getDocumentData(ctx, docId);
+  ctx.logger.info("_checkAndLock, name: %s, docId: %s, data: %j", name, docId, data);
+
   const now = Date.now();
   let res = true;
   if (data[name] && now < data[name].expireAt && fencingToken !== data[name].fencingToken) {
@@ -75,6 +77,8 @@ EditorData.prototype._checkAndLock = function(ctx, name, docId, fencingToken, tt
 };
 EditorData.prototype._checkAndUnlock = function(ctx, name, docId, fencingToken) {
   let data = this._getDocumentData(ctx, docId);
+  ctx.logger.info("_checkAndUnlock, name: %s, docId: %s, data: %j", name, docId, data);
+
   const now = Date.now();
   let res;
   if (data[name] && now < data[name].expireAt) {
