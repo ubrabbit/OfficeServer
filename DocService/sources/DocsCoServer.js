@@ -642,6 +642,7 @@ function* publish(ctx, data, optDocId, optUserId, opt_pubsub) {
     var msg = JSON.stringify(data);
     var realPubsub = opt_pubsub ? opt_pubsub : pubsub;
     if (realPubsub) {
+      ctx.logger.info("publish, docId: %s ; data: %j", optDocId, data);
       realPubsub.publish(msg);
     }
   }
@@ -2866,6 +2867,7 @@ exports.install = function(server, callbackFunction) {
       }
 
       puckerIndex += arrNewDocumentChanges.length;
+      ctx.logger.info("insertChangesPromise: docId: %s ; startIndex: %s ; arrNewDocumentChanges: %j", docId, deleteIndex, arrNewDocumentChanges);
       yield sqlBase.insertChangesPromise(ctx, arrNewDocumentChanges, docId, startIndex, conn.user);
     }
     const changesIndex = (-1 === deleteIndex && data.startSaveChanges) ? startIndex : -1;
